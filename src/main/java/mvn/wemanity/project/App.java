@@ -10,9 +10,10 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("Bonjour !");
 		boolean wantToQuit = false;
-
+		Scanner sc = new Scanner(System.in);
+		
 		while (!wantToQuit) {
-			Scanner sc = new Scanner(System.in);
+			
 			System.out.println("Veuillez entrer un nombre à traduire. Entrez 'Q' pour quitter.");
 			String nb = sc.nextLine();
 
@@ -24,6 +25,7 @@ public class App {
 		}
 
 		System.out.println("Merci d'avoir joué. ");
+		sc.close();
 	}
 
 }

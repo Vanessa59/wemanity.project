@@ -25,8 +25,19 @@ public class TranslationFooBar {
 	public static String printFooBar(String nb) {
 
 		if (isNumber(nb)) {
-			String result = divisible(nb) + containsNumber(nb);		
-			return result.equals("") ? nb : result;
+			String result = divisible(nb);
+			
+			//Si nb divisible => on va remplacer les chiffres + les zéros
+			//Si nb non divisible => 2 cas : soit on remplace tout soit on remplace juste les zéros
+			if(isDivisible(nb)) {
+				result = divisible(nb) + translateNumbers(nb);
+			} else if (containsNumbers(nb)){
+				result = translateNumbers(nb);
+			} else {
+				result = replaceZero(nb);
+			}
+		
+			return result;
 		} else {
 			return "La saisie n'est pas un nombre.";
 		}
@@ -41,6 +52,25 @@ public class TranslationFooBar {
 	private static boolean isNumber(String nb) {
 		Pattern pattern = Pattern.compile("[0-9]+");
 		return pattern.matcher(nb).matches();
+	}
+	
+	/**
+	 * Method that verify if the value can be divisible by 3, 5 or 7
+	 * @param nb
+	 * @return
+	 */
+	static boolean isDivisible(String nb) {
+		Integer nbInt = Integer.parseInt(nb);
+		return nbInt % 3 == 0 || nbInt % 5 == 0 || nbInt % 7 == 0 ;
+	}
+	
+	/**
+	 * Method that verify if the value can be divisible by 3, 5 or 7
+	 * @param nb
+	 * @return
+	 */
+	private static boolean containsNumbers(String nb) {
+		return nb.contains("3") || nb.contains("5") || nb.contains("7") ;
 	}
 
 	/**
@@ -71,10 +101,10 @@ public class TranslationFooBar {
 	 * @param nb
 	 * @return translation into FooBar
 	 */
-	private static String containsNumber(String nb) {
+	private static String translateNumbers(String nb) {
 		String res = "";
 
-		for (int i = 0; i < nb.length(); i++) {
+		for (int i = 0; i < nb.length(); i++) {			
 			if (nb.charAt(i) == '3') {
 				res += "Foo";
 			}
@@ -83,10 +113,22 @@ public class TranslationFooBar {
 			}
 			if (nb.charAt(i) == '7') {
 				res += "Qix";
-			}
+			} 
+			if (nb.charAt(i) == '0') {
+				res += "*";
+			} 
 		}
 
 		return res;
+	}
+	
+	/**
+	 * Method that replaces "zero" to "*" in a number
+	 * @param nb
+	 * @return translation into *
+	 */
+	 static String replaceZero(String nb) {
+		return nb.replace("0", "*");
 	}
 
 }
