@@ -9,6 +9,11 @@ import junit.framework.TestSuite;
  */
 public class TranslationFooBarTest extends TestCase {
 	
+	/**
+	 * Test de PrintFooBar
+	 * Regroupe les méthodes isNumber, Divisible et ContainsNumber.
+	 * Affiche la traduction du nombre.
+	 */
 	public void testPrintFooBar() {
 //		1  => 1
 //		2  => 2
