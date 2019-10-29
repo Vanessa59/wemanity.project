@@ -12,9 +12,9 @@ public class App {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Veuillez entrer un nombre.");
-		NumberFooBar nb = new NumberFooBar(sc.nextLine());
+		String nb = sc.nextLine();
 
-		System.out.println(nb.printFooBar());
+		System.out.println(TranslationFooBar.printFooBar(nb));
 		System.out.println("Merci d'avoir joué. ");
 	}
 
